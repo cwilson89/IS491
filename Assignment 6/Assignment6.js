@@ -42,12 +42,11 @@ function OperationResult(output)
 
 function GetCustomer()
 {
-    window.alert.toString("Let's go!");
     var custid = document.getElementById("getCust3input").value;
     var objRequest = new XMLHttpRequest();
     var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getOrdersForCustomer/";
     url += custid;
-    window.alert.toString(url);
+    
     objRequest.onreadystatechange = function()
     {
         if (objRequest.readyState == 4 && objRequest ==200)
@@ -61,11 +60,6 @@ function GetCustomer()
     objRequest.send();
 }
 
-function Hey()
-{
-    window.alert.toString("Let's go!");
-}
-
 function GenerateOutput(result)
 {
     var count = 0;
@@ -75,6 +69,6 @@ function GenerateOutput(result)
     {
         displaytext += result.GetOrdersForCustomerResult[count].OrderDate + "," + result.GetOrdersForCustomerResult[count].OrderID + "<br>";
     }
-    window.alert.toString(displaytext);
+    
     document.getElementById("orderdisplay3").innerHTML = displaytext;
 }
