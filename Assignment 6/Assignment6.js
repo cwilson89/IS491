@@ -2,73 +2,105 @@ function CreateCustomer()
 {
     var objRequest = new XMLHttpRequest();
     var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/CreateCustomer";
-    
-    //Collect Customer data from web page
     var customerid = document.getElementById("custid").value;
     var customername = document.getElementById("custname").value;
     var customercity = document.getElementById("custcity").value;
-    
-    //Create the parameter string
-    var newcustomer = '{"CustomerID":"' + customerid + '","CompanyName":"' + customername +'"}';
-    
-    //Checking for AJAx operation return
+    var newcustomer = '{"CustomerID":"' + customerid + '","CompanyName":"' + customername +'"}';    
     objRequest.onreadystatechange = function()
     {
         if (objRequest.readyState == 4 && objRequest.status == 200)
         {
             var result = JSON.parse(objRequest.responseText);
-            OperationResult(result);
+            CreateResult(result);
         }
     }
-
-    //Start AJAX request
     objRequest.open("POST", url, true);
     objRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     objRequest.send(newcustomer);
-
 }
 
-function OperationResult(output)
-{        
-    if (output.WasSuccessful == 1)
-    {
-        document.getElementById("result").innerHTML = "The operation was successful!"
-    }
-    else
-    {
-        document.getElementById("result").innerHTML = "The operation was not successful!" + "<br>" + output.Exception;
-    }
-}
-
-function GetCustomer()
+function UpdateOrder()
 {
-    var custid = document.getElementById("getCust3input").value;
     var objRequest = new XMLHttpRequest();
-    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/getOrdersForCustomer/";
-    url += custid;
-    
+    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/updateOrderAddress";
+    var ordernum = document.getElementById("ordernumber").value;
+    var customername = document.getElementById("shipname").value;
+    var customeraddress = document.getElementById("shipaddress").value;
+    var customercity = document.getElementById("shipcity").value;
+    var customerzip = document.getElementById("zipcode").value;
+    var updaterecord = '{"OrderID":' + ordernum + '","ShipAddress":"' + customeraddress + '","ShipCity":"' + customercity + '","ShipName":"' + customername + '","ShipPostcode":"' + customerzip + '"}';
     objRequest.onreadystatechange = function()
     {
-        if (objRequest.readyState == 4 && objRequest ==200)
+        if (objRequest.status == 200)
         {
-            var output = JSON.parse(objRequest.responseText);
-            GenerateOutput(output);
+            var result = JSON.parse(objRequest.responseText);
+            UpdateResult(result);
+        }
+    }    
+    objRequest.open("POST", url, true);
+    objRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    objRequest.send(updaterecord);
+}
+
+function DeleteCustomer()
+{
+    var objRequest = new XMLHttpRequest();
+    var url = "http://bus-pluto.ad.uab.edu/jsonwebservice/service1.svc/deleteCustomer/";
+    var customerid = document.getElementById("custiddel").value;
+    url += customerid;
+    objRequest.onreadystatechange = function()
+    {
+        if (objRequest.readyState == 4 && objRequest.status == 200)
+        {
+            var result = JSON.parse(objRequest.responseText);
+            DeleteResult(result);
         }
     }
-    
-    objRequest.open("GET",url,true);
+    objRequest.open("GET", url, true);
+    objRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     objRequest.send();
 }
 
-function GenerateOutput(result)
-{
-    var count = 0;
-    var displaytext = "";
-    
-    for (count = 0; count < result.GetOrdersForCustomerResult.length; count++)
+function CreateResult(output)
+{        
+    if (output.WasSuccessful == 1)
     {
-        displaytext += result.GetOrdersForCustomerResult[count].OrderDate + "," + result.GetOrdersForCustomerResult[count].OrderID + "<br>";
+        alert("The operation was successful!");
     }
-    
-    document.getElementById("orderdisplay3").innerHTML = displaytext;
+    else
+    {
+        alert("The operation was not successful!" + "-" + output.Exception);
+    }
+}
+
+function DeleteResult(output)
+{        
+    if (output.DeleteCustomerResult.WasSuccessful == 1)
+    {
+        alert("The operation was successful!");
+    }
+    else
+    {
+        alert("The operation was not successful!" + "-" + output.DeleteCustomerResult.Exception);
+    }
+}
+
+function UpdateResult(output)
+{        
+    if (output.WasSuccessful == -1)
+    {
+        alert("Operation failed! Unexpected Error!");
+    }
+    if (output.WasSuccessful == -2)
+    {
+        alert("Operation failed! Invalid input data!");
+    }
+    if (output.WasSuccessful == -3)
+    {
+        alert("Operation failed! Order ID not found!");
+    }
+    if (output.WasSuccessful == 0)
+    {
+        alert("The operation was successful!");
+    }
 }

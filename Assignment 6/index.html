@@ -9,23 +9,43 @@
 
 <body>
     <section id="sec1">
-        <label>Please enter a Customer ID: </label>
+        <label>Customer ID: </label>
         <input type="text" id="custid">
         <br>
-        <button onclick="GetOrders()" id="orders">Get Customer Orders</button>
+        <label>Customer name: </label>
+        <input type="text" id="custname">
+        <br>
+        <label>Customer city: </label>
+        <input type="text" id="custcity">
+        <button onclick="CreateCustomer()" id="create">Create New Customer</button>
         <br>
         <label id="orderdisplay">Display orders here</label>
     </section>
     <hr>
     <section id="sec2">
-        I'll get to this later
+        <label>Order Number:</label>
+        <input type="text" id="ordernumber">
+        <br>
+        <label>Name:</label>
+        <input type="text" id="shipname">
+        <br>
+        <label>Address:</label>
+        <input type="text" id="shipaddress">
+        <br>
+        <label>City:</label>
+        <input type="text" id="shipcity">
+        <br>
+        <label>Zip Code:</label>
+        <input type="text" id="zipcode">
+        <br>
+        <button onclick="UpdateOrder()" id="update">Update Order</button>
     </section>
     <hr>
     <section id="sec3">
-        <input type="text" id="getCust3input">
-            <button onclick="GetCustomer()" id="getCust3btn">Get Customer</button>
-            <br>
-            <label id="orderdisplay3">Display orders here</label>
+        <label>Customer ID:</label>
+        <input type="text" id="custiddel">
+        <button onclick="DeleteCustomer()" id="delete">Delete Customer</button>
+        <br>
     </section>
     
 </body>
