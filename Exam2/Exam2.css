@@ -1,5 +1,5 @@
-#sec1 {visibility: hidden}
-#sec2 {}
-#sec3
-#sec4
-#sec5
+#sec1 {display: none;}
+#sec2 {display: none;}
+#sec3 {display: none;}
+#sec4 {display: none;}
+#sec5 {display: none;}

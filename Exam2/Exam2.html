@@ -10,42 +10,70 @@
 <body>
     <select id="dropdown">
         <option></option>
-        <option onclick="View()">View Categories</option>
-        <option onclick="Create()">Create Category</option>
-        <option onclick="Change()">Change Category</option>
-        <option onclick="Delete()">Delete Category</option>
+        <option onclick="DisplayCategories()">View Categories</option>
+        <option onclick="CreateCategory()">Create Category</option>
+        <option onclick="UpdateCategory()">Change Category</option>
+        <option onclick="DeleteCategory()">Delete Category</option>
         <option onclick="About()">About</option>
     </select>
+    <br>
     <section id="sec1">
+        <button onclick="DisplayCategories()">Display Categories</button>
         <table id="catdisplay">
-            <td>
-                <tr>Category ID</tr>
-                <tr>Category</tr>
-                <tr>Description</tr>
-            </td>
-        </table>
+                <tr>
+                    <td>Category ID</td>
+                    <td>Category</td>
+                    <td>Description</td>
+                </tr>
+        </table>        
     </section>
+    <br>
     <section id="sec2">
-        <table>
-            <td>
-                <tr>Category ID</tr>
-                <tr>Category</tr>
-                <tr>Description</tr>
-            </td>
-            <td>
-                <tr>Category</tr>
-                <label type="input"></label>
-            </td>
+        <table id="createcat">
+                 <tr>
+                    <td>Category ID:</td>
+                    <td><input type="text" id="cid2"></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td><input  type="text" id="category2"></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><input type="text" id="description2"></td>
+                </tr>
         </table>
+        <button onclick="">Create</button>
     </section>
+    <br>
     <section id="sec3">
-        test
+        <table>
+            <tr>
+                <td>Category ID:</td>
+                <td><input id="cid3"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td><input id="desc3"></td>
+            </tr>
+        </table>
+        <button  onclick="UpdateCategory()">Update</button>
     </section>
+    <br>
     <section id="sec4">
-        test
+        <table>
+            <tr>
+                <td>Category ID:</td>
+                <td><input id="cid4" type="text"></td>
+            </tr>
+        </table>
+        <button onclick="DeleteCategory()">Delete</button>
     </section>
+    <br>
     <section id="sec5">
-        test
+        Chris Wilson
+        <br>
+        IS491
     </section>
 </body>
 </html>
